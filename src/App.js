@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { Button } from 'flowbite-react';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="bg-primary-400 mt-10 ">
+      <div className='flex text-center align-center'>
+        <p className="text-3xl font-bold text-center text-amber-300">
+          Hello world!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Button
+          outline={true}
+          gradientDuoTone="tealToLime"
         >
-          Learn React
-        </a>
-      </header>
+          Teal to Lime
+        </Button>
+      </div>
     </div>
   );
 }
