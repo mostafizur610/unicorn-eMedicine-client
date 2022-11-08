@@ -6,7 +6,7 @@ import img2 from '../../assets/logo/logo02.png'
 
 const NavigationBar = () => {
     return (
-        <Navbar className='bg-gray-300'
+        <Navbar className='bg-slate-300'
             fluid={true}
             rounded={true}
         >

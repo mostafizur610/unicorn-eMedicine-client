@@ -1,11 +1,41 @@
+import { Footer } from 'flowbite-react';
 import React from 'react';
+import img2 from '../../assets/logo/logo02.png'
 
-const Footer = () => {
+const FooterDetails = () => {
     return (
         <div>
-            <h2>Footer</h2>
+            <Footer container={true} className='bg-slate-800'>
+                <div className="w-full text-center">
+                    <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
+                        <Footer.Brand
+                            src={img2}
+                            alt=""
+                        />
+                        <Footer.LinkGroup>
+                            <Footer.Link href="#">
+                                About
+                            </Footer.Link>
+                            <Footer.Link href="#">
+                                Privacy Policy
+                            </Footer.Link>
+                            <Footer.Link href="#">
+                                Licensing
+                            </Footer.Link>
+                            <Footer.Link href="#">
+                                Contact
+                            </Footer.Link>
+                        </Footer.LinkGroup>
+                    </div>
+                    <Footer.Divider />
+                    <Footer.Copyright
+                        by="Unicorn™"
+                        year={2022}
+                    />
+                </div>
+            </Footer>
         </div>
     );
 };
 
-export default Footer;
+export default FooterDetails;
