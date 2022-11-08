@@ -1,14 +1,21 @@
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
+import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
+import { FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
     useTitle('Login');
+
+    const handleLogin = event => {
+        event.preventDefault();
+    }
+
+
     return (
         <div className='m-12 bg-white border shadow-xl'>
             <h1 className='text-4xl text-center py-4 bg-orange-100'>Login!!</h1>
-            <form className="flex flex-col gap-4 p-12 ">
+            <form onSubmit={handleLogin} className="flex flex-col gap-4 p-12 ">
                 <div>
                     <div className="mb-2 block">
                         <Label
@@ -39,12 +46,7 @@ const Login = () => {
                         required={true}
                     />
                 </div>
-                {/* <div className="flex items-center gap-2">
-                    <Checkbox id="remember" />
-                    <Label htmlFor="remember">
-                        Remember me
-                    </Label>
-                </div> */}
+
                 <div className='flex mt-4'>
                     <Button type="submit" className='mr-2'>
                         Login
@@ -53,7 +55,7 @@ const Login = () => {
                         outline={true}
                         gradientDuoTone="greenToBlue"
                     >
-                        Login With Google
+                        Continue With <FaGoogle className='ml-1' />
                     </Button>
                 </div>
             </form>

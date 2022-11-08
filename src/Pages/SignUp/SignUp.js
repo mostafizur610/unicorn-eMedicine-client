@@ -1,14 +1,31 @@
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
-import React from 'react';
+import { Button, Label, TextInput } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
     useTitle('Sign Up');
+    const { createUser } = useContext(AuthContext);
+
+    const handleSignUp = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error));
+    }
+
     return (
         <div className='m-12 bg-white border shadow-xl'>
             <h1 className='text-4xl text-center py-4 bg-orange-100'>Sign Up!!</h1>
-            <form className="flex flex-col gap-4 p-12 ">
+            <form onSubmit={handleSignUp} className="flex flex-col gap-4 p-12 ">
                 <div>
                     <div className="mb-2 block">
                         <Label
@@ -70,12 +87,7 @@ const SignUp = () => {
                         required={true}
                     />
                 </div>
-                <div className="flex items-center gap-2">
-                    <Checkbox id="remember" />
-                    <Label htmlFor="remember">
-                        Remember me
-                    </Label>
-                </div>
+
                 <div className='flex'>
                     <Button type="submit" className='mr-2'>
                         Sign Up
