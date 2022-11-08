@@ -4,8 +4,10 @@ import img from '../../assets/faq/faq1.png'
 import img2 from '../../assets/faq/jwt.png'
 import img3 from '../../assets/faq/faq3.jpg'
 import img4 from '../../assets/faq/faq4.jpeg'
+import useTitle from '../../hooks/useTitle';
 
 const Blogs = () => {
+    useTitle('Blogs');
     return (
         <Accordion className='m-12 bg-gray-300'>
 

@@ -10,16 +10,19 @@ const NavigationBar = () => {
             fluid={true}
             rounded={true}
         >
-            <Navbar.Brand href="https://flowbite.com/">
-                <img
-                    src={img1}
-                    className="mx-4 h-20"
-                    alt=""
-                />
-                <span>
-                    <img className="h-20" src={img2} alt="" />
-                </span>
-            </Navbar.Brand>
+            <Link to='/'>
+                <Navbar.Brand>
+                    <img
+                        src={img1}
+                        className="mx-4 h-20"
+                        alt=""
+                    />
+                    <span>
+                        <img className="h-20" src={img2} alt="" />
+                    </span>
+                </Navbar.Brand>
+            </Link>
+
             <div className="flex md:order-2 mr-4">
                 <Dropdown
                     arrowIcon={false}

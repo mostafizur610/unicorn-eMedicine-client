@@ -1,11 +1,13 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
+    useTitle('Sign Up');
     return (
         <div className='m-12 bg-white border shadow-xl'>
-            <h1 className='text-4xl text-center py-4 bg-orange-300'>Sign Up!!</h1>
+            <h1 className='text-4xl text-center py-4 bg-orange-100'>Sign Up!!</h1>
             <form className="flex flex-col gap-4 p-12 ">
                 <div>
                     <div className="mb-2 block">
