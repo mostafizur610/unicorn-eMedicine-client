@@ -39,6 +39,10 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <div><h1 className='flex justify-center mt-48 text-red-900 text-5xl'>404 Not Found</h1><br /><h4 className='flex justify-center text-yellow-500 text-xl'>This route is not defined</h4></div>
     }
 
 ])
