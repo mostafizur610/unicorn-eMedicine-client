@@ -6,13 +6,13 @@ const FooterDetails = () => {
     return (
         <div>
             <Footer container={true} className='bg-slate-800'>
-                <div className="w-full text-center">
+                <div className="w-full mx-4 text-center">
                     <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
                         <Footer.Brand
                             src={img2}
                             alt=""
                         />
-                        <Footer.LinkGroup>
+                        <Footer.LinkGroup className='flex justify-between'>
                             <Footer.Link href="#">
                                 About
                             </Footer.Link>
