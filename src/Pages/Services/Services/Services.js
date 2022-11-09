@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaLocationArrow, FaPhone, FaVoicemail } from 'react-icons/fa';
 import useTitle from '../../../hooks/useTitle';
 import ServiceCard from '../ServiceCard/ServiceCard';
 
 const Services = () => {
     useTitle('Services');
+    const [services, setServices] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
+
     return (
         <div>
-
             <form className='mt-4 mx-12 mb-12'>
                 <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                 <div className="relative">
@@ -20,10 +26,16 @@ const Services = () => {
                 </div>
             </form>
 
-            <div>
-                <ServiceCard></ServiceCard>
-            </div>
+            <div className='grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-16'>
 
+                {
+                    services.map(service => <ServiceCard
+                        key={service._id}
+                        service={service}
+                    ></ServiceCard>)
+                }
+
+            </div>
 
             <div className='my-12 gap-4 bg-blue-900 h-40 flex justify-around p-5 rounded'>
                 <div className='text-white'>
