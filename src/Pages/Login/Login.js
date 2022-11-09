@@ -1,14 +1,28 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
-import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     useTitle('Login');
 
+    const { logIn } = useContext(AuthContext);
+
     const handleLogin = event => {
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+
     }
 
 
@@ -35,13 +49,13 @@ const Login = () => {
                     <div className="mb-2 block">
                         <Label
                             htmlFor="password1"
-                            name='password'
                             value="Your password"
                         />
                     </div>
                     <TextInput
                         id="password1"
                         type="password"
+                        name='password'
                         placeholder="password"
                         required={true}
                     />
@@ -51,12 +65,7 @@ const Login = () => {
                     <Button type="submit" className='mr-2'>
                         Login
                     </Button>
-                    <Button
-                        outline={true}
-                        gradientDuoTone="greenToBlue"
-                    >
-                        Continue With <FaGoogle className='ml-1' />
-                    </Button>
+                    <SocialLogin />
                 </div>
             </form>
             <p className='text-start ml-12 mb-6'>New to Unicorn eMedicine? <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link></p>
