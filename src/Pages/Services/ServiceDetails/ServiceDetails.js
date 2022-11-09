@@ -1,11 +1,15 @@
 import { Button } from 'flowbite-react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import useTitle from '../../../hooks/useTitle';
 import ReviewSection from '../ReviewSection/ReviewSection';
 
 const ServiceDetails = () => {
-    useTitle('Details Service')
+    const serviceDetails = useLoaderData();
+    let { id } = useParams();
+    console.log(id);
+    useTitle('Details Service');
+
     return (
         <div className='grid grid-cols-2 gap-10 m-5'>
             {/* details */}
@@ -19,7 +23,7 @@ const ServiceDetails = () => {
                 <p>Rating</p>
                 <p>Price</p>
                 <div>
-                    <Link to='/addReview'>
+                    <Link to={`/addReview/${id}`}>
                         <Button gradientDuoTone="purpleToBlue">
                             Add Review
                         </Button>

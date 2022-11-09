@@ -1,5 +1,5 @@
 import { Button, Carousel } from 'flowbite-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css'
 import img1 from '../../assets/banner/banner1.png'
 import img2 from '../../assets/banner/banner2.webp'
@@ -10,9 +10,16 @@ import img6 from '../../assets/banner/banner6.jpg'
 import useTitle from '../../hooks/useTitle';
 import { BsArrowRightShort } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import ServiceCard from '../Services/ServiceCard/ServiceCard';
 
 const Home = () => {
-    useTitle('Home')
+    useTitle('Home');
+    const [services, setServices] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/services?limit=3`)
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
         <div>
             <div className="grid m-2 h-56 grid-cols-2 gap-4 sm:h-64 xl:h-80 2xl:h-96 header-section">
@@ -31,6 +38,15 @@ const Home = () => {
                         <p className='mt-8 title2'>The Leading Online Medicine services Platform of Bangladesh.</p>
                     </div>
                 </div>
+            </div>
+
+            <div className='grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-16 mt-8'>
+                {
+                    services.map(service => <ServiceCard
+                        key={service._id}
+                        service={service}
+                    ></ServiceCard>)
+                }
             </div>
 
             <div className='my-12 flex justify-center'>
