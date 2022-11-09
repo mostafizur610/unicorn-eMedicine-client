@@ -5,6 +5,9 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyReview from "../../Pages/MyReview/MyReview";
+import AddReview from "../../Pages/Services/AddReview/AddReview";
+import ServiceDetails from "../../Pages/Services/ServiceDetails/ServiceDetails";
+import Services from "../../Pages/Services/Services/Services";
 import SignUp from "../../Pages/SignUp/SignUp";
 
 
@@ -19,11 +22,19 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/myreview',
+                path: '/services',
+                element: <Services></Services>
+            },
+            {
+                path: '/serviceDetails',
+                element: <ServiceDetails></ServiceDetails>
+            },
+            {
+                path: '/myReview',
                 element: <MyReview></MyReview>
             },
             {
-                path: '/addservices',
+                path: '/addServices',
                 element: <AddServices></AddServices>
             },
             {
@@ -37,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/addReview',
+                element: <AddReview></AddReview>
             }
         ]
     },

@@ -39,11 +39,11 @@ const NavigationBar = () => {
                 </Navbar.Link>
 
                 <Navbar.Link active={true} >
-                    <Link to='/myreview'>My Review</Link>
+                    <Link to='/myReview'>My Review</Link>
                 </Navbar.Link>
 
                 <Navbar.Link active={true} >
-                    <Link to='/addservices'>Add Services</Link>
+                    <Link to='/addServices'>Add Services</Link>
                 </Navbar.Link>
 
                 <Navbar.Link active={true}>
