@@ -1,5 +1,6 @@
-import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
+import { Button, Dropdown, Navbar } from 'flowbite-react';
 import React, { useContext } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import img1 from '../../assets/logo/logo01.png'
 import img2 from '../../assets/logo/logo02.png'
@@ -11,7 +12,7 @@ const NavigationBar = () => {
     const handleLogout = () => {
         logOut()
             .then()
-            .catch();
+            .catch(error => console.error(error))
     }
 
     return (
@@ -36,7 +37,7 @@ const NavigationBar = () => {
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                // label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
                 >
                 </Dropdown>
                 <Navbar.Toggle />
@@ -54,7 +55,7 @@ const NavigationBar = () => {
                 </Navbar.Link>
 
                 {
-                    user?.email ?
+                    user?.uid ?
                         <>
                             <Navbar.Link active={true} >
                                 <Link to='/myReview'>My Review</Link>
@@ -65,14 +66,27 @@ const NavigationBar = () => {
                             </Navbar.Link>
 
                             <Navbar.Link active={true} >
-                                <Link> <Button
-                                    onClick={handleLogout}
-                                    color="info"
-                                    pill={true}
-                                    outline={true}
-                                >
-                                    Sign Out
-                                </Button></Link>
+
+                                <div className='flex gap-4'>
+
+                                    <p className='text-lg text-white'>{user?.displayName}</p>
+
+                                    <span className='mr-4'> {
+                                        user?.photoURL ?
+                                            <img className='h-12 rounded-3xl' src={user?.photoURL} alt='' /> : <FaUser />
+                                    }</span>
+
+                                    <Link> <Button
+                                        onClick={handleLogout}
+                                        color="info"
+                                        pill={true}
+                                        outline={true}
+                                    >
+                                        Sign Out
+                                    </Button></Link>
+                                </div>
+
+
                             </Navbar.Link>
                         </>
                         :

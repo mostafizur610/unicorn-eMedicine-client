@@ -1,26 +1,57 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
     useTitle('Sign Up');
-    const { createUser } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
+        // console.log(name, photoURL, email, password);
 
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                form.reset();
+                handleUpdateUserProfile(name, photoURL);
             })
+            .catch(error => {
+                console.error(error)
+                setError(error.message);
+            });
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
             .catch(error => console.error(error));
     }
+
+
+    // if (loading) {
+    //     return <div className='text-center flex justify-center m-48'><Button color="gray">
+    //         <Spinner aria-label="Alternate spinner button example" />
+    //         <span className="pl-3">
+    //             Loading...
+    //         </span>
+    //     </Button></div>
+    // }
 
     return (
         <div className='m-12 bg-white border shadow-xl'>
@@ -92,6 +123,7 @@ const SignUp = () => {
                     <Button type="submit" className='mr-2'>
                         Sign Up
                     </Button>
+                    <p>{error}</p>
                 </div>
             </form>
             <p className='text-start ml-12 mb-6'>Already have an account? <Link className='text-orange-600 font-bold' to='/login'>Login</Link></p>

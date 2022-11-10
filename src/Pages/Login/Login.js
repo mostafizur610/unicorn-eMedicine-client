@@ -1,14 +1,20 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     useTitle('Login');
-
+    const [error, setError] = useState('');
     const { logIn } = useContext(AuthContext);
+
+    // redirect
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
 
     const handleLogin = event => {
         event.preventDefault();
@@ -20,10 +26,24 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                setError('');
+                navigate(from, { replace: true });
             })
-            .catch(error => console.error(error))
-
+            .catch(error => {
+                console.error(error)
+                setError(error.message);
+            });
     }
+
+    // if (loading) {
+    //     return <div className='text-center flex justify-center m-48'><Button color="gray">
+    //         <Spinner aria-label="Alternate spinner button example" />
+    //         <span className="pl-3">
+    //             Loading...
+    //         </span>
+    //     </Button></div>
+    // }
 
 
     return (
@@ -67,6 +87,7 @@ const Login = () => {
                     </Button>
                     <SocialLogin />
                 </div>
+                <p>{error}</p>
             </form>
             <p className='text-start ml-12 mb-6'>New to Unicorn eMedicine? <Link className='text-orange-600 font-bold' to='/signup'>Sign Up</Link></p>
         </div>

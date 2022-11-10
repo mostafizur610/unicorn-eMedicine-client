@@ -1,16 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import { Button, Spinner } from 'flowbite-react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaLocationArrow, FaPhone, FaVoicemail } from 'react-icons/fa';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 import ServiceCard from '../ServiceCard/ServiceCard';
 
 const Services = () => {
     useTitle('Services');
+    const { loading } = useContext(AuthContext);
     const [services, setServices] = useState([]);
+
     useEffect(() => {
         fetch(`http://localhost:5000/services`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
+
+    // delete
+    // const handleDelete = id => {
+    //     const proceed = window.confirm('Are you sure, you want to delete this service?')
+    //     if (proceed) {
+    //         fetch('http://localhost:5000/services/', {
+    //             method: 'DELETE'
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 if (data.deletedCount > 0) {
+    //                     alert('Deleted successfully');
+    //                     const remaining = services.filter(service => service._id !== id);
+    //                     setServices(remaining);
+    //                 }
+    //             })
+    //     }
+
+    // }
+
+
+
+    if (loading) {
+        return <div className='text-center flex justify-center m-48'><Button color="gray">
+            <Spinner aria-label="Alternate spinner button example" />
+            <span className="pl-3">
+                Loading...
+            </span>
+        </Button></div>
+    }
+
 
     return (
         <div>
@@ -31,6 +67,7 @@ const Services = () => {
                     services.map(service => <ServiceCard
                         key={service._id}
                         service={service}
+                    // handleDelete={handleDelete}
                     ></ServiceCard>)
                 }
 

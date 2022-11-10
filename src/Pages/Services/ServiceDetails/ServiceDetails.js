@@ -22,6 +22,11 @@ const ServiceDetails = () => {
                 </div>
                 <p>{details}</p>
                 <div className='flex justify-between mt-8'>
+                    <Link to='/addServices'>
+                        <Button gradientDuoTone="purpleToBlue">
+                            Add Service
+                        </Button>
+                    </Link>
                     <p>Rating: {rating}</p>
                     <p>Price: ${price}</p>
                     <Link to={`/addReview/${id}`}>
