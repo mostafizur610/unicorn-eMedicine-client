@@ -24,7 +24,7 @@ const AddReview = () => {
         }
 
 
-        const response = await fetch('http://localhost:5000/review', {
+        const response = await fetch('https://unicorn-emedicine-service-server.vercel.app/review', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

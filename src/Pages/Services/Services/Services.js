@@ -11,7 +11,7 @@ const Services = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services`)
+        fetch(`https://unicorn-emedicine-service-server.vercel.app/services`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -20,7 +20,7 @@ const Services = () => {
     // const handleDelete = id => {
     //     const proceed = window.confirm('Are you sure, you want to delete this service?')
     //     if (proceed) {
-    //         fetch('http://localhost:5000/services/', {
+    //         fetch('https://unicorn-emedicine-service-server.vercel.app/services/', {
     //             method: 'DELETE'
     //         })
     //             .then(res => res.json())

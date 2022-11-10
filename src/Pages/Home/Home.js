@@ -16,7 +16,7 @@ const Home = () => {
     useTitle('Home');
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/services?limit=3`)
+        fetch(`https://unicorn-emedicine-service-server.vercel.app/services?limit=3`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

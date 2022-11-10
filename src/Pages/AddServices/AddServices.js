@@ -16,7 +16,7 @@ const AddServices = () => {
             details: form.details.value,
         }
 
-        const response = await fetch('http://localhost:5000/service', {
+        const response = await fetch('https://unicorn-emedicine-service-server.vercel.app/service', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

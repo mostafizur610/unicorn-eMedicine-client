@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://unicorn-emedicine-service-server.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/myReview',
@@ -55,12 +55,12 @@ const router = createBrowserRouter([
             {
                 path: '/addReview/:id',
                 element: <PrivateRoutes><AddReview></AddReview></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://unicorn-emedicine-service-server.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/editReview/:id',
                 element: <PrivateRoutes><EditReview></EditReview></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://unicorn-emedicine-service-server.vercel.app/review/${params.id}`)
             }
         ]
     },

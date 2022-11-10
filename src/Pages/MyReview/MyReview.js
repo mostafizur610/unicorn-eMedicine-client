@@ -13,7 +13,7 @@ const MyReview = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`, {
+        fetch(`https://unicorn-emedicine-service-server.vercel.app/review?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('unicornToken')}`
             }
@@ -37,7 +37,7 @@ const MyReview = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to delete this review?')
         if (proceed) {
-            fetch(`http://localhost:5000/review/${id}`, {
+            fetch(`https://unicorn-emedicine-service-server.vercel.app/review/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
