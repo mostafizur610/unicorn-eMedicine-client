@@ -1,15 +1,26 @@
 import { Button, Card, Label, Textarea, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 
 const AddReview = () => {
     useTitle('Add Review');
     let { id } = useParams();
+    const navigate = useNavigate();
     const { rating, review, name } = useLoaderData();
-    console.log(review);
     const { user } = useContext(AuthContext);
+
+    const [ratingValue, setRatingValue] = useState(rating);
+    const [reviewValue, setReviewValue] = useState(review);
+
+    const onRatingChange = (event) => {
+        setRatingValue(event.target.value)
+    }
+
+    const onReviewChange = (event) => {
+        setReviewValue(event.target.value)
+    }
 
     const formSubmitHandler = async (event) => {
         event.preventDefault();
@@ -28,11 +39,11 @@ const AddReview = () => {
             body: JSON.stringify(formData)
         });
         const data = await response.json();
-        console.log(data);
-        if (data.insertedId) {
-            alert('Data added successfully')
+        if (data) {
+            form.reset();
+            alert('Data Updated successfully');
+            navigate('/myReview', { replace: true });
         }
-        form.reset();
     }
     return (
         <div className="w-full flex justify-center my-12">
@@ -71,8 +82,9 @@ const AddReview = () => {
                             id="rating1"
                             type="text"
                             name="rating"
-                            value='12'
+                            value={ratingValue}
                             required={true}
+                            onInput={onRatingChange}
                             placeholder='rating'
                         />
                     </div >
@@ -87,7 +99,8 @@ const AddReview = () => {
                             id="comment"
                             placeholder="Leave a comment..."
                             name="review"
-                            value={review}
+                            onInput={onReviewChange}
+                            value={reviewValue}
                             required={true}
                             rows={4}
                         />
