@@ -1,10 +1,19 @@
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import React from 'react';
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from '../../assets/logo/logo01.png'
 import img2 from '../../assets/logo/logo02.png'
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const NavigationBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch();
+    }
+
     return (
         <Navbar className='bg-slate-300'
             fluid={true}
@@ -38,21 +47,40 @@ const NavigationBar = () => {
                     <Link to='/'>Home</Link>
                 </Navbar.Link>
 
-                <Navbar.Link active={true} >
-                    <Link to='/myReview'>My Review</Link>
-                </Navbar.Link>
 
-                <Navbar.Link active={true} >
-                    <Link to='/addServices'>Add Services</Link>
-                </Navbar.Link>
 
                 <Navbar.Link active={true}>
                     <Link to='/blogs'>Blogs</Link>
                 </Navbar.Link>
 
-                <Navbar.Link active={true}>
-                    <Link to='/login'>Login</Link>
-                </Navbar.Link>
+                {
+                    user?.email ?
+                        <>
+                            <Navbar.Link active={true} >
+                                <Link to='/myReview'>My Review</Link>
+                            </Navbar.Link>
+
+                            <Navbar.Link active={true} >
+                                <Link to='/addServices'>Add Services</Link>
+                            </Navbar.Link>
+
+                            <Navbar.Link active={true} >
+                                <Link> <Button
+                                    onClick={handleLogout}
+                                    color="info"
+                                    pill={true}
+                                    outline={true}
+                                >
+                                    Sign Out
+                                </Button></Link>
+                            </Navbar.Link>
+                        </>
+                        :
+                        <Navbar.Link active={true}>
+                            <Link to='/login'>Login</Link>
+                        </Navbar.Link>
+                }
+
             </Navbar.Collapse>
 
         </Navbar>

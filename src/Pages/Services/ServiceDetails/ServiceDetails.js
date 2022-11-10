@@ -5,24 +5,25 @@ import useTitle from '../../../hooks/useTitle';
 import ReviewSection from '../ReviewSection/ReviewSection';
 
 const ServiceDetails = () => {
-    const serviceDetails = useLoaderData();
+    const { name, image, details, rating, price } = useLoaderData();
     let { id } = useParams();
-    console.log(id);
+    // console.log(id);
     useTitle('Details Service');
 
+    // serviceDetails
     return (
-        <div className='grid grid-cols-2 gap-10 m-5'>
+        <div className='grid lg:grid-cols-2 grid-cols-1 gap-10 m-5'>
             {/* details */}
             <div className='bg-gray-200 border p-4 rounded shadow-lg '>
 
-                <h1>service name</h1>
+                <h1 className='flex justify-center text-3xl text-red-900 mb-4'>{name}</h1>
                 <div>
-                    <img src="" alt="" />
+                    <img className='w-full mb-4' src={image} alt="" />
                 </div>
-                <p>details</p>
-                <p>Rating</p>
-                <p>Price</p>
-                <div>
+                <p>{details}</p>
+                <div className='flex justify-between mt-8'>
+                    <p>Rating: {rating}</p>
+                    <p>Price: ${price}</p>
                     <Link to={`/addReview/${id}`}>
                         <Button gradientDuoTone="purpleToBlue">
                             Add Review

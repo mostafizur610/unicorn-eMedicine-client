@@ -1,14 +1,46 @@
 import { Table } from 'flowbite-react';
-import React from 'react';
-import { HiPencilSquare } from "react-icons/hi2";
-import { HiOutlineTrash } from "react-icons/hi";
+import React, { useContext, useEffect, useState } from 'react';
+// import { HiPencilSquare } from "react-icons/hi2";
+// import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import ReviewTable from './ReviewTable/ReviewTable';
+
 
 const MyReview = () => {
-    useTitle('My Review')
+    useTitle('My Review');
+    const { user } = useContext(AuthContext);
+    const [reviews, setReviews] = useState([]);
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/review?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [user?.email])
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to delete this review?')
+        if (proceed) {
+            fetch(`http://localhost:5000/review/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('Deleted successfully');
+                        const remaining = reviews.filter(riv => riv._id !== id);
+                        setReviews(remaining);
+                    }
+                })
+        }
+
+    }
+
     return (
         <div className='m-12'>
-            <div className='flex justify-center my-4 text-green-500 text-2xl '><p>My review is shown</p></div>
+            <div className='flex justify-center my-4 text-green-500 text-2xl '><p>My review is shown {reviews.length}</p></div>
             <Table hoverable={true}>
                 <Table.Head className='border-y-4'>
                     <Table.HeadCell className="!p-4">
@@ -34,29 +66,15 @@ const MyReview = () => {
                 </Table.Head>
 
                 <Table.Body className="divide-y">
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="!p-4">
-                            <HiOutlineTrash />
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Apple MacBook Pro 17"
-                        </Table.Cell>
-                        <Table.Cell>
-                            Sliver
-                        </Table.Cell>
-                        <Table.Cell>
-                            Laptop
-                        </Table.Cell>
 
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                <HiPencilSquare />
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
+                    {
+                        reviews.map(rev => <ReviewTable
+                            key={rev._id}
+                            rev={rev}
+                            handleDelete={handleDelete}
+                        ></ReviewTable>)
+                    }
+
                 </Table.Body>
             </Table>
         </div>
