@@ -2,7 +2,7 @@
 <h4>Unicorn-eMedicine Service</h4>
 
 ## Live site
-<p>url: <a>http://localhost:3000/</a></p>
+<p>url:</p> <a>http://localhost:3000/</a>
 
 <ul>
 <li>React component</li>

@@ -1,6 +1,7 @@
 import { Table } from 'flowbite-react';
 import React from 'react';
 import { HiOutlineTrash, HiPencilSquare } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 
 const ReviewTable = ({ rev, handleDelete }) => {
     const { _id, rating, review, service } = rev;
@@ -19,14 +20,13 @@ const ReviewTable = ({ rev, handleDelete }) => {
             <Table.Cell>
                 {review}
             </Table.Cell>
-
             <Table.Cell>
-                <a
-                    href="/tables"
+                <Link
+                    to={`/editReview/${_id}`}
                     className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                 >
                     <HiPencilSquare />
-                </a>
+                </Link>
             </Table.Cell>
         </Table.Row>
 

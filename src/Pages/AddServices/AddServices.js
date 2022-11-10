@@ -3,10 +3,11 @@ import React from 'react';
 import useTitle from '../../hooks/useTitle';
 
 const AddServices = () => {
+    useTitle('Add Services')
+
     const formSubmitHandler = async (event) => {
         event.preventDefault();
         const form = event.target;
-
         const formData = {
             serviceName: form.serviceName.value,
             imageUrl: form.imageUrl.value,
@@ -28,7 +29,7 @@ const AddServices = () => {
         }
         form.reset();
     }
-    useTitle('Add Services')
+
     return (
         <div>
             <form className="flex flex-col gap-4 m-12 bg-rose-100 p-4 rounded" onSubmit={formSubmitHandler}>

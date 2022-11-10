@@ -17,7 +17,7 @@ const SignUp = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        // console.log(name, photoURL, email, password);
+
 
         createUser(email, password)
             .then(result => {
@@ -42,16 +42,6 @@ const SignUp = () => {
             .then(() => { })
             .catch(error => console.error(error));
     }
-
-
-    // if (loading) {
-    //     return <div className='text-center flex justify-center m-48'><Button color="gray">
-    //         <Spinner aria-label="Alternate spinner button example" />
-    //         <span className="pl-3">
-    //             Loading...
-    //         </span>
-    //     </Button></div>
-    // }
 
     return (
         <div className='m-12 bg-white border shadow-xl'>

@@ -5,9 +5,8 @@ import useTitle from '../../../hooks/useTitle';
 import ReviewSection from '../ReviewSection/ReviewSection';
 
 const ServiceDetails = () => {
-    const { name, image, details, rating, price } = useLoaderData();
+    const { name, image, details, rating, price, reviews } = useLoaderData();
     let { id } = useParams();
-    // console.log(id);
     useTitle('Details Service');
 
     // serviceDetails
@@ -37,9 +36,9 @@ const ServiceDetails = () => {
                 </div>
             </div>
 
-            {/* review */}
+
             <div>
-                <ReviewSection></ReviewSection>
+                <ReviewSection reviews={reviews}></ReviewSection>
             </div>
         </div>
     );

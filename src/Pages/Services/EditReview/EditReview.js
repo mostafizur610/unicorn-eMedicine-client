@@ -7,25 +7,21 @@ import useTitle from '../../../hooks/useTitle';
 const AddReview = () => {
     useTitle('Add Review');
     let { id } = useParams();
-    // console.log(id);
-    const { name } = useLoaderData();
+    const { rating, review, name } = useLoaderData();
+    console.log(review);
     const { user } = useContext(AuthContext);
 
     const formSubmitHandler = async (event) => {
         event.preventDefault();
         const form = event.target;
-        const email = user?.email || 'unregistered';
-
         const formData = {
             rating: form.rating.value,
-            review: form.review.value,
-            email,
-            serviceId: id
+            review: form.review.value
         }
 
 
-        const response = await fetch('http://localhost:5000/review', {
-            method: 'POST',
+        const response = await fetch(`http://localhost:5000/review/${id}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -45,7 +41,7 @@ const AddReview = () => {
                 imgSrc="https://deorwine.b-cdn.net/images/solutions/medicine/medicine-delivery-vector.webp"
             >
                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Add review about {name}
+                    Edit review about {name}
                 </h5>
                 <form onSubmit={formSubmitHandler}>
                     <div>
@@ -75,6 +71,7 @@ const AddReview = () => {
                             id="rating1"
                             type="text"
                             name="rating"
+                            value='12'
                             required={true}
                             placeholder='rating'
                         />
@@ -90,13 +87,14 @@ const AddReview = () => {
                             id="comment"
                             placeholder="Leave a comment..."
                             name="review"
+                            value={review}
                             required={true}
                             rows={4}
                         />
                     </div>
                     <div>
                         <Button type="submit" size="xs">
-                            Proceed to Add
+                            Proceed to Edit
                         </Button>
                     </div>
                 </form>

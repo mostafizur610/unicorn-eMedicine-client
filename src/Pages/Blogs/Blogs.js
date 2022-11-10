@@ -64,8 +64,6 @@ const Blogs = () => {
                     </div>
                 </Accordion.Content>
             </Accordion.Panel>
-
-
         </Accordion>
     );
 };

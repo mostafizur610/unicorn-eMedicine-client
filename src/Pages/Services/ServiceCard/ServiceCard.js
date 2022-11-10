@@ -3,11 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-// import { HiOutlineTrash } from 'react-icons/hi2';
+
 
 
 const ServiceCard = ({ service }) => {
-    // {handleDelete}
     const { _id, image, name, details, rating, price } = service;
 
     return (
@@ -29,8 +28,6 @@ const ServiceCard = ({ service }) => {
             </p>
 
             <div className="flex items-center justify-between">
-
-                {/* <button onClick={() => handleDelete(_id)}><HiOutlineTrash /></button> */}
 
                 <span className="text-2xl font-bold text-gray-900 dark:text-white">
                     ${price}
