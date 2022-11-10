@@ -1,6 +1,6 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 
 const ReviewSection = () => {
     return (
@@ -11,12 +11,11 @@ const ReviewSection = () => {
                     <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                         Review About This Service
                     </h5>
-                    <Link
-                        href="#"
+                    <p
                         className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
                     >
-                        View all
-                    </Link>
+                        Rating
+                    </p>
                 </div>
                 <div className="flow-root">
                     <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -38,7 +37,7 @@ const ReviewSection = () => {
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $320
+                                    1
                                 </div>
                             </div>
                         </li>
@@ -60,7 +59,7 @@ const ReviewSection = () => {
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $3467
+                                    4
                                 </div>
                             </div>
                         </li>
@@ -82,7 +81,7 @@ const ReviewSection = () => {
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $67
+                                    3
                                 </div>
                             </div>
                         </li>
@@ -104,7 +103,7 @@ const ReviewSection = () => {
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $367
+                                    3
                                 </div>
                             </div>
                         </li>
@@ -126,7 +125,7 @@ const ReviewSection = () => {
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $2367
+                                    2
                                 </div>
                             </div>
                         </li>

@@ -1,6 +1,19 @@
 <h1>Website Name</h1>
 <h4>Unicorn-eMedicine Service</h4>
 
+## Live site
+<p>url: http://localhost:3000/</p>
+
+<ul>
+<li>React component</li>
+<li>React router</li>
+<li>Firebase authentication</li>
+<li>Node un time server</li>
+<li>Real api data</li>
+<li>MongoDb</li>
+<li>Crud operation</li>
+<li>3 step architecture</li>
+</ul>
 
 
 # Getting Started with Create React App
