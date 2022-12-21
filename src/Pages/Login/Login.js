@@ -84,10 +84,10 @@ const Login = () => {
                             {/* <HiExclamation className="h-5 w-5" /> */}
                         </div>
                         <div className="ml-3 text-sm font-normal">
-                            Improve password difficulty.
+                            Please Login to Add Review.
                         </div>
                         <Toast.Toggle />
-                    </Toast >
+                    </Toast>
                 )
             }
 
