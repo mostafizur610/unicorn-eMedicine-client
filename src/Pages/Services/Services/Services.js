@@ -1,4 +1,4 @@
-import { Button, Spinner } from 'flowbite-react';
+import { Button, Spinner, Tabs } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaLocationArrow, FaPhone, FaVoicemail } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -61,6 +61,27 @@ const Services = () => {
                     <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
+
+            <div>
+                <Tabs.Group
+                    aria-label="Full width tabs"
+                    style='fullWidth'
+                >
+                    <Tabs.Item title="All Services">
+                        Service Items
+                    </Tabs.Item>
+                    <Tabs.Item title="Dashboard">
+                        Dashboard content
+                    </Tabs.Item>
+                    <Tabs.Item title="Settings">
+                        Settings content
+                    </Tabs.Item>
+                    <Tabs.Item title="Contact">
+                        Contact With Us
+                    </Tabs.Item>
+                </Tabs.Group>
+            </div>
+
 
             <div className='grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-16'>
                 {
